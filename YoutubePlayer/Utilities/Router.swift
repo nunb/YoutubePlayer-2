@@ -13,7 +13,7 @@ enum Router: URLRequestConvertible {
     static let kGoogleAPIKey = "AIzaSyBtW-zJkAl2Y7_2Z_AoJdmYovDWRJ1oGvE"
     
     // github.com/Alamofire/Alamofire#api-parameter-abstraction
-    case MostPopular(pageToken: String)
+    case MostPopular(pageToken: String?)
     
     // MARK: URLRequestConvertible
     
@@ -22,12 +22,15 @@ enum Router: URLRequestConvertible {
             
             switch self {
             case .MostPopular(let pageToken):
-                let parameters: [String: AnyObject] = [
+                var parameters: [String: AnyObject] = [
                     "key": Router.kGoogleAPIKey,
                     "part": "snippet",
-                    "chart": "mostPopular",
-                    "pageToken": pageToken,
+                    "chart": "mostPopular"
                 ]
+                
+                if pageToken != nil {
+                    parameters["pageToken"] = pageToken
+                }
                 
                 return (.GET, "/videos", parameters)
             }
