@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import Bolts
 
 // Reference: github.com/Alamofire/Alamofire#generic-response-object-serialization
 @objc public protocol ResponseCollectionSerializable {
@@ -39,3 +40,24 @@ extension Alamofire.Request {
 }
 
 struct APIClient {}
+
+// MARK: - Fetch Videos Extension
+
+extension APIClient {
+    
+    static func fetchMostPopularVideos(#pageToken: String?) -> BFTask {
+        var source = BFTaskCompletionSource()
+        var URLRequest = Router.MostPopular(pageToken: pageToken)
+        
+        Alamofire.request(URLRequest).responseJSON { (_, _, items, error) -> Void in
+            
+            if error == nil {
+                source.setResult(items)
+            } else {
+                source.setError(error)
+            }
+        }
+        
+        return source.task
+    }
+}
