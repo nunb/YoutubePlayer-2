@@ -10,6 +10,7 @@
 		023156C01AD2383A00EB1876 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156BF1AD2383A00EB1876 /* APIClient.swift */; };
 		023156C21AD2392D00EB1876 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156C11AD2392D00EB1876 /* Router.swift */; };
 		025AA5BC1AD25B5B0087F260 /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AA5BB1AD25B5B0087F260 /* VideoItem.swift */; };
+		025AA5BE1AD261510087F260 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AA5BD1AD261510087F260 /* Thumbnail.swift */; };
 		029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880C81AD21ED80015CEB7 /* AppDelegate.swift */; };
 		029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880CA1AD21ED80015CEB7 /* ViewController.swift */; };
 		029880CE1AD21ED80015CEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029880CC1AD21ED80015CEB7 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		023156BF1AD2383A00EB1876 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = Utilities/APIClient.swift; sourceTree = "<group>"; };
 		023156C11AD2392D00EB1876 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = Utilities/Router.swift; sourceTree = "<group>"; };
 		025AA5BB1AD25B5B0087F260 /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoItem.swift; path = Models/VideoItem.swift; sourceTree = "<group>"; };
+		025AA5BD1AD261510087F260 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Thumbnail.swift; path = Models/Thumbnail.swift; sourceTree = "<group>"; };
 		029880C31AD21ED70015CEB7 /* YoutubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029880C71AD21ED80015CEB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		029880C81AD21ED80015CEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				025AA5BB1AD25B5B0087F260 /* VideoItem.swift */,
+				025AA5BD1AD261510087F260 /* Thumbnail.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			files = (
 				025AA5BC1AD25B5B0087F260 /* VideoItem.swift in Sources */,
 				023156C21AD2392D00EB1876 /* Router.swift in Sources */,
+				025AA5BE1AD261510087F260 /* Thumbnail.swift in Sources */,
 				029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
