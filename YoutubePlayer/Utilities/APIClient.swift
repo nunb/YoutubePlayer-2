@@ -8,36 +8,8 @@
 
 import Alamofire
 import Bolts
+import Realm
 
-// Reference: github.com/Alamofire/Alamofire#generic-response-object-serialization
-@objc public protocol ResponseCollectionSerializable {
-    class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
-}
-
-extension Alamofire.Request {
-    
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
-        
-        let serializer: Serializer = {
-            (request, response, data) in
-            
-            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
-            
-            if response != nil && JSON != nil {
-                return (T.collection(response: response!, representation: JSON!), nil)
-            } else {
-                return (nil, serializationError)
-            }
-        }
-        
-        return response(serializer: serializer, completionHandler: {
-            (request, response, object, error) in
-            
-            completionHandler(request, response, object as? [T], error)
-        })
-    }
-}
 
 struct APIClient {}
 
@@ -49,10 +21,21 @@ extension APIClient {
         var source = BFTaskCompletionSource()
         var URLRequest = Router.MostPopular(pageToken: pageToken)
         
-        Alamofire.request(URLRequest).responseJSON { (_, _, items, error) -> Void in
+        Alamofire.request(URLRequest).responseJSON { (_, _, json, error) in
             
             if error == nil {
-                source.setResult(items)
+
+                // Save in background
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    var videos = [VideoItem]()
+                    
+                    if let json: AnyObject = json {
+                        videos = VideoItem.collection(representation: json)
+                    }
+                    
+                    source.setResult(videos)
+                }
+            
             } else {
                 source.setError(error)
             }
