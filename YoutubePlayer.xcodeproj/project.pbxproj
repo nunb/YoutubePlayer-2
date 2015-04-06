@@ -13,6 +13,7 @@
 		029880D01AD21ED80015CEB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029880CF1AD21ED80015CEB7 /* Images.xcassets */; };
 		029880D31AD21ED80015CEB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029880D11AD21ED80015CEB7 /* LaunchScreen.xib */; };
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
+		32C6EB45AD045EAA50751E81 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4776F3F0AE8524FC608F619 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,9 @@
 		029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerTests.swift; sourceTree = "<group>"; };
 		029880E81AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1AD0A01181C84118EB5319C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2E4FD07D44D8F06036A412C4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B4776F3F0AE8524FC608F619 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C6EB45AD045EAA50751E81 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +69,8 @@
 				029880C51AD21ED70015CEB7 /* YoutubePlayer */,
 				029880DB1AD21ED80015CEB7 /* YoutubePlayerTests */,
 				029880C41AD21ED70015CEB7 /* Products */,
+				9958FCF786CDD689765A1032 /* Pods */,
+				243A5144CEFEF894AE2A37F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +121,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		243A5144CEFEF894AE2A37F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4776F3F0AE8524FC608F619 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9958FCF786CDD689765A1032 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E4FD07D44D8F06036A412C4 /* Pods.debug.xcconfig */,
+				1AD0A01181C84118EB5319C3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,9 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 029880E21AD21ED80015CEB7 /* Build configuration list for PBXNativeTarget "YoutubePlayer" */;
 			buildPhases = (
+				18EFF929A92591782F074B53 /* Check Pods Manifest.lock */,
 				029880BF1AD21ED70015CEB7 /* Sources */,
 				029880C01AD21ED70015CEB7 /* Frameworks */,
 				029880C11AD21ED70015CEB7 /* Resources */,
+				DC5CCBA01BC6E423370FA752 /* Embed Pods Frameworks */,
+				CFDB2FFEAB62CF2B2F2C1CF4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +236,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18EFF929A92591782F074B53 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CFDB2FFEAB62CF2B2F2C1CF4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC5CCBA01BC6E423370FA752 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		029880BF1AD21ED70015CEB7 /* Sources */ = {
@@ -341,6 +416,7 @@
 		};
 		029880E31AD21ED80015CEB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E4FD07D44D8F06036A412C4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -352,6 +428,7 @@
 		};
 		029880E41AD21ED80015CEB7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AD0A01181C84118EB5319C3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -414,6 +491,7 @@
 				029880E41AD21ED80015CEB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		029880E51AD21ED80015CEB7 /* Build configuration list for PBXNativeTarget "YoutubePlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +500,7 @@
 				029880E71AD21ED80015CEB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
