@@ -11,7 +11,27 @@ import Foundation
 
 class FeedItemViewModel: NSObject {
     
-    override init() {
+    private(set) var item: VideoItem
+    private(set) var title: String?
+    private(set) var itemDescription: String?
+    private(set) var publishedAt: NSDate?
+    private(set) var thumbnail: Thumbnail?
+    
+    init(item: VideoItem) {
+        self.item = item
+        title = item.title
+        itemDescription = item.itemDescription
+        publishedAt = item.publishedAt
+        
+        // TODO: Change appropriate resolution
+        let predicate = NSPredicate(format: "resolution = %@", "standard")
+        let results = item.thumbnails.objectsWithPredicate(predicate)
+        
+        if results.count > 0 {
+            let thumbnail = results.lastObject() as Thumbnail
+            self.thumbnail = thumbnail
+        }
+        
         super.init()
     }
 }
