@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Ryoichi Hara. All rights reserved.
 //
 
-import Cocoa
+import AsyncDisplayKit
 
 class FeedVideoNode: ASCellNode {
 
