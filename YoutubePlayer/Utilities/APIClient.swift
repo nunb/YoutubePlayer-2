@@ -21,19 +21,29 @@ extension APIClient {
         var source = BFTaskCompletionSource()
         var URLRequest = Router.MostPopular(pageToken: pageToken)
         
-        Alamofire.request(URLRequest).responseJSON { (_, _, json, error) in
+        Alamofire.request(URLRequest).responseJSON {
+            (_, _, JSONDictionary, error) in
             
             if error == nil {
 
                 // Save in background
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                     var videos = [VideoItem]()
+                    var nextPageToken = ""
                     
-                    if let json: AnyObject = json {
-                        videos = VideoItem.collection(representation: json)
+                    if let JSONDictionary: AnyObject = JSONDictionary {
+                        let json = JSON(JSONDictionary)
+                        videos = VideoItem.collection(json: json)
+                        
+                        if let pageToken = json["nextPageToken"].string {
+                            nextPageToken = pageToken
+                        }
                     }
                     
-                    source.setResult(videos)
+                    source.setResult([
+                        "videos": videos,
+                        "nextPageToken": nextPageToken
+                    ])
                 }
             
             } else {
