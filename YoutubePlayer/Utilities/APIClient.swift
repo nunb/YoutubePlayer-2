@@ -28,8 +28,9 @@ extension APIClient {
 
                 // Save in background
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    var result: [String: AnyObject]!
                     var videos = [VideoItem]()
-                    var nextPageToken = ""
+                    var nextPageToken: String?
                     
                     if let JSONDictionary: AnyObject = JSONDictionary {
                         let json = JSON(JSONDictionary)
@@ -39,11 +40,14 @@ extension APIClient {
                             nextPageToken = pageToken
                         }
                     }
+
+                    result = ["videos": videos]
                     
-                    source.setResult([
-                        "videos": videos,
-                        "nextPageToken": nextPageToken
-                    ])
+                    if let nextPageToken = nextPageToken {
+                        result["nextPageToken"] = nextPageToken
+                    }
+                    
+                    source.setResult(result)
                 }
             
             } else {
