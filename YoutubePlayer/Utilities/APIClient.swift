@@ -8,36 +8,8 @@
 
 import Alamofire
 import Bolts
+import Realm
 
-// Reference: github.com/Alamofire/Alamofire#generic-response-object-serialization
-@objc public protocol ResponseCollectionSerializable {
-    class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
-}
-
-extension Alamofire.Request {
-    
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
-        
-        let serializer: Serializer = {
-            (request, response, data) in
-            
-            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
-            
-            if response != nil && JSON != nil {
-                return (T.collection(response: response!, representation: JSON!), nil)
-            } else {
-                return (nil, serializationError)
-            }
-        }
-        
-        return response(serializer: serializer, completionHandler: {
-            (request, response, object, error) in
-            
-            completionHandler(request, response, object as? [T], error)
-        })
-    }
-}
 
 struct APIClient {}
 
@@ -49,10 +21,35 @@ extension APIClient {
         var source = BFTaskCompletionSource()
         var URLRequest = Router.MostPopular(pageToken: pageToken)
         
-        Alamofire.request(URLRequest).responseJSON { (_, _, items, error) -> Void in
+        Alamofire.request(URLRequest).responseJSON {
+            (_, _, JSONDictionary, error) in
             
             if error == nil {
-                source.setResult(items)
+
+                // Save in background
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    var result: [String: AnyObject]!
+                    var videos = [VideoItem]()
+                    var nextPageToken: String?
+                    
+                    if let JSONDictionary: AnyObject = JSONDictionary {
+                        let json = JSON(JSONDictionary)
+                        videos = VideoItem.collection(json: json)
+                        
+                        if let pageToken = json["nextPageToken"].string {
+                            nextPageToken = pageToken
+                        }
+                    }
+
+                    result = ["videos": videos]
+                    
+                    if let nextPageToken = nextPageToken {
+                        result["nextPageToken"] = nextPageToken
+                    }
+                    
+                    source.setResult(result)
+                }
+            
             } else {
                 source.setError(error)
             }
