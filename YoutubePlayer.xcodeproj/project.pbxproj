@@ -21,6 +21,7 @@
 		02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */; };
 		02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E71E1AD369C100F6180D /* FeedViewModel.swift */; };
 		02E0E7211AD3749C00F6180D /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */; };
+		02E0E7271AD387A500F6180D /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E7261AD387A500F6180D /* FeedViewController.swift */; };
 		32C6EB45AD045EAA50751E81 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4776F3F0AE8524FC608F619 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelSerializable.swift; path = Models/ModelSerializable.swift; sourceTree = "<group>"; };
 		02E0E71E1AD369C100F6180D /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewModel.swift; path = ViewModels/FeedViewModel.swift; sourceTree = "<group>"; };
 		02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItemViewModel.swift; path = ViewModels/FeedItemViewModel.swift; sourceTree = "<group>"; };
+		02E0E7261AD387A500F6180D /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = Views/Controllers/FeedViewController.swift; sourceTree = "<group>"; };
 		1AD0A01181C84118EB5319C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2E4FD07D44D8F06036A412C4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B4776F3F0AE8524FC608F619 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		029880C51AD21ED70015CEB7 /* YoutubePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				02E0E7221AD386BC00F6180D /* Views */,
 				02E0E71D1AD369A500F6180D /* ViewModels */,
 				025AA5BA1AD25A980087F260 /* Models */,
 				023156BE1AD237C800EB1876 /* Utilities */,
@@ -183,6 +186,38 @@
 				02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		02E0E7221AD386BC00F6180D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02E0E7251AD386E400F6180D /* Cells */,
+				02E0E7241AD386DF00F6180D /* Views */,
+				02E0E7231AD386D900F6180D /* Controllers */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		02E0E7231AD386D900F6180D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02E0E7261AD387A500F6180D /* FeedViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		02E0E7241AD386DF00F6180D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		02E0E7251AD386E400F6180D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		243A5144CEFEF894AE2A37F4 /* Frameworks */ = {
@@ -361,6 +396,7 @@
 				025AA5BE1AD261510087F260 /* Thumbnail.swift in Sources */,
 				029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
+				02E0E7271AD387A500F6180D /* FeedViewController.swift in Sources */,
 				02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
 				02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */,
