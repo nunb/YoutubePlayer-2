@@ -13,12 +13,21 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 1.1.4)
-  - AsyncDisplayKit (= 1.1.1)
+  - AsyncDisplayKit (from `git@github.com:facebook/AsyncDisplayKit.git`)
   - Bolts (= 1.1.4)
   - ChameleonFramework (= 1.1.2)
   - pop (= 1.0.7)
   - Realm (= 0.91.1)
   - Snap (= 0.9.2)
+
+EXTERNAL SOURCES:
+  AsyncDisplayKit:
+    :git: git@github.com:facebook/AsyncDisplayKit.git
+
+CHECKOUT OPTIONS:
+  AsyncDisplayKit:
+    :commit: 01e7d09a26abe61ab20510df876c64f9aec223e0
+    :git: git@github.com:facebook/AsyncDisplayKit.git
 
 SPEC CHECKSUMS:
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
