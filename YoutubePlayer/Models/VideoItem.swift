@@ -81,8 +81,7 @@ class VideoItem: RLMObject {
     
     // MARK: - ResponseCollectionSerializable
     
-    class func collection(#representation: AnyObject) -> [VideoItem] {
-        let json = JSON(representation)
+    class func collection(#json: JSON) -> [VideoItem] {
         let realm = RLMRealm.defaultRealm()
         var collection = [VideoItem]()
         
