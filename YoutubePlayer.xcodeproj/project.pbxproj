@@ -19,6 +19,7 @@
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
 		02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */; };
 		02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */; };
+		02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E71E1AD369C100F6180D /* FeedViewModel.swift */; };
 		32C6EB45AD045EAA50751E81 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4776F3F0AE8524FC608F619 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelSerializable.swift; path = Models/ModelSerializable.swift; sourceTree = "<group>"; };
+		02E0E71E1AD369C100F6180D /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewModel.swift; path = ViewModels/FeedViewModel.swift; sourceTree = "<group>"; };
 		1AD0A01181C84118EB5319C3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2E4FD07D44D8F06036A412C4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B4776F3F0AE8524FC608F619 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 		029880C51AD21ED70015CEB7 /* YoutubePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				02E0E71D1AD369A500F6180D /* ViewModels */,
 				025AA5BA1AD25A980087F260 /* Models */,
 				023156BE1AD237C800EB1876 /* Utilities */,
 				029880C81AD21ED80015CEB7 /* AppDelegate.swift */,
@@ -169,6 +172,14 @@
 				02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */,
 			);
 			name = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		02E0E71D1AD369A500F6180D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				02E0E71E1AD369C100F6180D /* FeedViewModel.swift */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 		243A5144CEFEF894AE2A37F4 /* Frameworks */ = {
@@ -348,6 +359,7 @@
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
 				02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
+				02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
