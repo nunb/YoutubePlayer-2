@@ -21,6 +21,7 @@
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
 		029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6321AD503BF00C17B9E /* VideoViewController.swift */; };
 		029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6341AD523A100C17B9E /* VideoViewModel.swift */; };
+		02C49EBC1AD5354F00051EDF /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 02C49EBB1AD5354F00051EDF /* Assets */; };
 		02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */; };
 		02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */; };
 		02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E71E1AD369C100F6180D /* FeedViewModel.swift */; };
@@ -61,6 +62,7 @@
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		029EB6321AD503BF00C17B9E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = Views/Controllers/VideoViewController.swift; sourceTree = "<group>"; };
 		029EB6341AD523A100C17B9E /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = ViewModels/VideoViewModel.swift; sourceTree = "<group>"; };
+		02C49EBB1AD5354F00051EDF /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Pods/youtube-ios-player-helper/Assets"; sourceTree = "<group>"; };
 		02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelSerializable.swift; path = Models/ModelSerializable.swift; sourceTree = "<group>"; };
 		02E0E71E1AD369C100F6180D /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewModel.swift; path = ViewModels/FeedViewModel.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				029880DB1AD21ED80015CEB7 /* YoutubePlayerTests */,
 				029880C41AD21ED70015CEB7 /* Products */,
 				9958FCF786CDD689765A1032 /* Pods */,
+				02C49EBB1AD5354F00051EDF /* Assets */,
 				02D8E1E61AD26C0A0037A578 /* Submodules */,
 				243A5144CEFEF894AE2A37F4 /* Frameworks */,
 			);
@@ -347,6 +350,7 @@
 				029880CE1AD21ED80015CEB7 /* Main.storyboard in Resources */,
 				029880D31AD21ED80015CEB7 /* LaunchScreen.xib in Resources */,
 				029880D01AD21ED80015CEB7 /* Images.xcassets in Resources */,
+				02C49EBC1AD5354F00051EDF /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

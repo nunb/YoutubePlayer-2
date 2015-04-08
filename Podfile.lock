@@ -10,7 +10,7 @@ PODS:
     - Realm/Headers (= 0.91.1)
   - Realm/Headers (0.91.1)
   - Snap (0.9.2)
-  - youtube-ios-player-helper (0.1.1)
+  - youtube-ios-player-helper (0.1.2)
 
 DEPENDENCIES:
   - Alamofire (= 1.1.4)
@@ -20,25 +20,30 @@ DEPENDENCIES:
   - pop (= 1.0.7)
   - Realm (= 0.91.1)
   - Snap (= 0.9.2)
-  - youtube-ios-player-helper (= 0.1.1)
+  - youtube-ios-player-helper (from `git@github.com:youtube/youtube-ios-player-helper.git`)
 
 EXTERNAL SOURCES:
   AsyncDisplayKit:
     :git: git@github.com:facebook/AsyncDisplayKit.git
+  youtube-ios-player-helper:
+    :git: git@github.com:youtube/youtube-ios-player-helper.git
 
 CHECKOUT OPTIONS:
   AsyncDisplayKit:
-    :commit: 01e7d09a26abe61ab20510df876c64f9aec223e0
+    :commit: 6d8d7aeece5edc0ebb67a35ecfb3d3cfebdc5a93
     :git: git@github.com:facebook/AsyncDisplayKit.git
+  youtube-ios-player-helper:
+    :commit: c4efd00e79a599c16fd9887a827aca22acef8920
+    :git: git@github.com:youtube/youtube-ios-player-helper.git
 
 SPEC CHECKSUMS:
   Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
-  AsyncDisplayKit: 2c355970d1aabe00608211d9a50e35b7a5dc0ae4
+  AsyncDisplayKit: de270404aae9f070e1450e38840003691f9b5259
   Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   ChameleonFramework: 1b4588efcae564886e1a176fa02fb0f4c81a69b3
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   Realm: b9c1fd9defa26aa7276ce938a8df52ec81f24528
   Snap: 7318f07bc3d43adb0706f36ede18fa18d2347037
-  youtube-ios-player-helper: d7350b9f9070edf482e5d0bd5e8948c0ba1437f3
+  youtube-ios-player-helper: 9b1ff47d73626e83038be3a019ac714472e6e22c
 
 COCOAPODS: 0.36.3
