@@ -27,29 +27,27 @@ extension APIClient {
             if error == nil {
 
                 // Save in background
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                    var result: [String: AnyObject]!
-                    var videos = [VideoItem]()
-                    var nextPageToken: String?
+                var result: [String: AnyObject]!
+                var videos = [VideoItem]()
+                var nextPageToken: String?
                     
-                    if let JSONDictionary: AnyObject = JSONDictionary {
-                        let json = JSON(JSONDictionary)
-                        videos = VideoItem.collection(json: json)
+                if let JSONDictionary: AnyObject = JSONDictionary {
+                    let json = JSON(JSONDictionary)
+                    videos = VideoItem.collection(json: json)
                         
-                        if let pageToken = json["nextPageToken"].string {
-                            nextPageToken = pageToken
-                        }
+                    if let pageToken = json["nextPageToken"].string {
+                        nextPageToken = pageToken
                     }
-
-                    result = ["videos": videos]
-                    
-                    if let nextPageToken = nextPageToken {
-                        result["nextPageToken"] = nextPageToken
-                    }
-                    
-                    source.setResult(result)
                 }
-            
+
+                result = ["videos": videos]
+                    
+                if let nextPageToken = nextPageToken {
+                    result["nextPageToken"] = nextPageToken
+                }
+                    
+                source.setResult(result)
+                
             } else {
                 source.setError(error)
             }
