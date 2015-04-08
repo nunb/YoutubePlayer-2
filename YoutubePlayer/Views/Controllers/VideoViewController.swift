@@ -42,7 +42,7 @@ extension VideoViewController: YTPlayerViewDelegate {
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         println("playerViewDidBecomeReady:")
         
-        UIView.animateWithDuration(1.0,
+        UIView.animateWithDuration(0.6,
             animations: {
                 self.playerMaskView.alpha = 0.0
             },
