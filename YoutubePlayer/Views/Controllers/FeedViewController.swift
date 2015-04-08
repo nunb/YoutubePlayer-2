@@ -7,16 +7,93 @@
 //
 
 import UIKit
+import AsyncDisplayKit
+import Bolts
+
 
 class FeedViewController: UIViewController {
+
+    private let tableView = ASTableView()
+    private let viewModel = FeedViewModel()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        title = "YoutubePlayer"
+
+        applyTheme()
+        
+        tableView.asyncDataSource = self
+        tableView.asyncDelegate = self
+        
+        view.addSubview(tableView)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        tableView.frame = view.bounds
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.fetchMostPopularVideos(refresh: true).continueWithBlock {
+            (task) -> AnyObject! in
+            
+            if task.error != nil {
+                println(task.error)
+            }
+            
+            self.tableView.reloadData()
+            
+            return nil
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Private
+    
+    private func applyTheme() {
+        
+        if let navigationController = navigationController {
+            
+            //navigationController.navigationBar.barTintColor = UIColor.customColor()
+            
+            setNeedsStatusBarAppearanceUpdate()
+            
+            let tintColor =
+                UIColor(red: 233.0/255.0, green: 30.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+            
+            navigationController.navigationBar.tintColor = tintColor
+            
+            navigationController.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName: tintColor
+            ]
+        }
+    }
+}
+
+extension FeedViewController: ASTableViewDataSource {
+    
+    func tableView(tableView: ASTableView!, nodeForRowAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
+        let itemVM = viewModel.items[indexPath.row]
+        
+        return FeedVideoNode(viewModel: itemVM)
+    }
+}
+
+extension FeedViewController: ASCommonTableViewDataSource {
+    
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.items.count
+    }
+}
+
+extension FeedViewController: ASTableViewDelegate {
 }
