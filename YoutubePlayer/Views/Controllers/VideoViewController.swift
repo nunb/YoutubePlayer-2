@@ -32,17 +32,6 @@ class VideoViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let viewModel = viewModel {
-            
-            if let videoId = viewModel.videoId {
-                playerView.loadWithVideoId(videoId, playerVars: nil)
-            }
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
