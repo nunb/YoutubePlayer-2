@@ -23,13 +23,17 @@ class FeedItemViewModel: NSObject {
         itemDescription = item.itemDescription
         publishedAt = item.publishedAt
         
-        // TODO: Change appropriate resolution
-        let predicate = NSPredicate(format: "resolution = %@", "standard")
-        let results = item.thumbnails.objectsWithPredicate(predicate)
+        let resolutions = ["maxres", "standard", "high", "medium", "default"]
         
-        if results.count > 0 {
-            let thumbnail = results.lastObject() as Thumbnail
-            self.thumbnail = thumbnail
+        for resolution in resolutions {
+            let predicate = NSPredicate(format: "resolution = %@", resolution)
+            let results = item.thumbnails.objectsWithPredicate(predicate)
+            
+            if results.count > 0 {
+                let thumbnail = results.lastObject() as Thumbnail
+                self.thumbnail = thumbnail
+                break
+            }
         }
         
         super.init()

@@ -7,9 +7,11 @@ pod 'Alamofire'         , '1.1.4'
 pod 'Bolts'             , '1.1.4'
 pod 'ChameleonFramework', '1.1.2'
 pod 'Realm'             , '0.91.1'
-pod 'AsyncDisplayKit'   , '1.1.1'
 pod 'Snap'              , '0.9.2'
 pod 'pop'               , '1.0.7'
+
+# github.com/facebook/AsyncDisplayKit/issues/95
+pod 'AsyncDisplayKit'   , :git => 'git@github.com:facebook/AsyncDisplayKit.git'
 
 target 'YoutubePlayer' do
 
