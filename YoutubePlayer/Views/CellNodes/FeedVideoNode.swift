@@ -42,7 +42,7 @@ class FeedVideoNode: ASCellNode {
         let textShadow = NSShadow()
         textShadow.shadowColor = UIColor.clearColor()
         
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineSpacing = kParagraphLineSpacing
         paragraphStyle.lineBreakMode = .ByWordWrapping
         

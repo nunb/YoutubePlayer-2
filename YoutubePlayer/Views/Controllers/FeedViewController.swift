@@ -104,7 +104,7 @@ extension FeedViewController: ASCommonTableViewDelegate {
         let itemVM = viewModel.items[indexPath.row]
         let videoVM = VideoViewModel(videoItem: itemVM.item)
         
-        let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as VideoViewController
+        let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as! VideoViewController
         videoVC.viewModel = videoVM
         
         navigationController?.pushViewController(videoVC, animated: true)

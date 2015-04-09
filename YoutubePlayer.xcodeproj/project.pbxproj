@@ -21,8 +21,8 @@
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
 		029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6321AD503BF00C17B9E /* VideoViewController.swift */; };
 		029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6341AD523A100C17B9E /* VideoViewModel.swift */; };
+		02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B3223E1AD6150500426F6B /* SwiftyJSON.swift */; };
 		02C49EBC1AD5354F00051EDF /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 02C49EBB1AD5354F00051EDF /* Assets */; };
-		02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */; };
 		02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */; };
 		02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E71E1AD369C100F6180D /* FeedViewModel.swift */; };
 		02E0E7211AD3749C00F6180D /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */; };
@@ -62,8 +62,8 @@
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		029EB6321AD503BF00C17B9E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = Views/Controllers/VideoViewController.swift; sourceTree = "<group>"; };
 		029EB6341AD523A100C17B9E /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = ViewModels/VideoViewModel.swift; sourceTree = "<group>"; };
+		02B3223E1AD6150500426F6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		02C49EBB1AD5354F00051EDF /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Pods/youtube-ios-player-helper/Assets"; sourceTree = "<group>"; };
-		02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
 		02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelSerializable.swift; path = Models/ModelSerializable.swift; sourceTree = "<group>"; };
 		02E0E71E1AD369C100F6180D /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewModel.swift; path = ViewModels/FeedViewModel.swift; sourceTree = "<group>"; };
 		02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItemViewModel.swift; path = ViewModels/FeedItemViewModel.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		02D8E1E71AD26C1B0037A578 /* SwiftyJSON */ = {
 			isa = PBXGroup;
 			children = (
-				02D8E1E81AD26C2C0037A578 /* SwiftyJSON.swift */,
+				02B3223E1AD6150500426F6B /* SwiftyJSON.swift */,
 			);
 			name = SwiftyJSON;
 			sourceTree = "<group>";
@@ -427,8 +427,8 @@
 				029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */,
 				029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
+				02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */,
 				02E0E7271AD387A500F6180D /* FeedViewController.swift in Sources */,
-				02D8E1E91AD26C2C0037A578 /* SwiftyJSON.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
 				02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */,
 				02E0E7291AD388A300F6180D /* FeedVideoNode.swift in Sources */,

@@ -3,7 +3,7 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 
-pod 'Alamofire'         , '1.1.4'
+pod 'Alamofire', :git => 'git@github.com:Alamofire/Alamofire.git', :branch => 'xcode-6.3'
 pod 'Bolts'             , '1.1.4'
 pod 'ChameleonFramework', '1.1.2'
 pod 'Realm'             , '0.91.1'

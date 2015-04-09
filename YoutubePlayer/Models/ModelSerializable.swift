@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol ModelSerializable {
-    class func modelFromJSON(json: JSON) -> Self
+    static func modelFromJSON(json: JSON) -> Self
 }

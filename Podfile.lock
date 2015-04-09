@@ -13,7 +13,7 @@ PODS:
   - youtube-ios-player-helper (0.1.2)
 
 DEPENDENCIES:
-  - Alamofire (= 1.1.4)
+  - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `xcode-6.3`)
   - AsyncDisplayKit (from `git@github.com:facebook/AsyncDisplayKit.git`)
   - Bolts (= 1.1.4)
   - ChameleonFramework (= 1.1.2)
@@ -23,14 +23,20 @@ DEPENDENCIES:
   - youtube-ios-player-helper (from `git@github.com:youtube/youtube-ios-player-helper.git`)
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: xcode-6.3
+    :git: git@github.com:Alamofire/Alamofire.git
   AsyncDisplayKit:
     :git: git@github.com:facebook/AsyncDisplayKit.git
   youtube-ios-player-helper:
     :git: git@github.com:youtube/youtube-ios-player-helper.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 2ff5749ffc0425f05a1411b5b6fd2c25241b5b14
+    :git: git@github.com:Alamofire/Alamofire.git
   AsyncDisplayKit:
-    :commit: 6d8d7aeece5edc0ebb67a35ecfb3d3cfebdc5a93
+    :commit: 24bb0926bcbd4d7f925aa59e0df417f3be7065bd
     :git: git@github.com:facebook/AsyncDisplayKit.git
   youtube-ios-player-helper:
     :commit: c4efd00e79a599c16fd9887a827aca22acef8920

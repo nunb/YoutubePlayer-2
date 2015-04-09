@@ -17,7 +17,7 @@ extension NSDate {
         calendar.timeZone = NSTimeZone(name: "GMT")!
         
         let unitFlags: NSCalendarUnit =
-            .DayCalendarUnit | .HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit
+            .CalendarUnitDay | .CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond
         let dateComponents = calendar.components(unitFlags, fromDate: self, toDate: currentDate, options: NSCalendarOptions.allZeros)
         
         // stackoverflow.com/questions/26277626/nslocalizedstring-with-swift-variable

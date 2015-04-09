@@ -17,7 +17,7 @@ class GradientNode: ASDisplayNode {
             CGContextSaveGState(myContext)
             CGContextClipToRect(myContext, bounds)
             
-            let componentCount: UInt = 2
+            let componentCount: Int = 2
             let locations: [CGFloat] = [0.0, 1.0]
             let components: [CGFloat] = [
                 0.0, 0.0, 0.0, 0.8,
