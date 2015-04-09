@@ -29,16 +29,6 @@ class FeedViewController: UIViewController {
         tableView.asyncDelegate = self
         
         view.addSubview(tableView)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        tableView.frame = view.bounds
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
         viewModel.fetchMostPopularVideos(refresh: true).continueWithBlock {
             (task) -> AnyObject! in
@@ -51,6 +41,16 @@ class FeedViewController: UIViewController {
             
             return nil
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        tableView.frame = view.bounds
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,4 +96,17 @@ extension FeedViewController: ASCommonTableViewDataSource {
 }
 
 extension FeedViewController: ASTableViewDelegate {
+}
+
+extension FeedViewController: ASCommonTableViewDelegate {
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        let itemVM = viewModel.items[indexPath.row]
+        let videoVM = VideoViewModel(videoItem: itemVM.item)
+        
+        let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as! VideoViewController
+        videoVC.viewModel = videoVM
+        
+        navigationController?.pushViewController(videoVC, animated: true)
+    }
 }

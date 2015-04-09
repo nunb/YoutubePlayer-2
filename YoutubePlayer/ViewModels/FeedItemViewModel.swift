@@ -30,7 +30,7 @@ class FeedItemViewModel: NSObject {
             let results = item.thumbnails.objectsWithPredicate(predicate)
             
             if results.count > 0 {
-                let thumbnail = results.lastObject() as Thumbnail
+                let thumbnail = results.lastObject() as! Thumbnail
                 self.thumbnail = thumbnail
                 break
             }
