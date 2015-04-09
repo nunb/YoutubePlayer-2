@@ -27,7 +27,12 @@ class VideoItem: RLMObject {
     class func modelFromJSON(json: JSON) -> VideoItem {
         let model = VideoItem()
         
+        // videos api
         if let itemId = json["id"].string {
+            model.itemId = itemId
+        
+        // search api
+        } else if let itemId = json["id"]["videoId"].string {
             model.itemId = itemId
         }
 
