@@ -73,12 +73,19 @@
                                     <constraint firstAttribute="centerX" secondItem="a37-6z-X8a" secondAttribute="centerX" id="zE3-ma-zOO"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLo-Jn-MJv">
+                                <rect key="frame" x="0.0" y="200" width="320" height="368"/>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.94992118969298234" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RLo-Jn-MJv" firstAttribute="leading" secondItem="jzB-Bf-rHM" secondAttribute="leading" id="CUz-Lg-zlT"/>
+                            <constraint firstItem="XV6-E3-ODG" firstAttribute="top" secondItem="RLo-Jn-MJv" secondAttribute="bottom" id="DZf-oJ-gJn"/>
                             <constraint firstItem="PUw-jz-45i" firstAttribute="top" secondItem="Doe-wp-rv3" secondAttribute="bottom" id="HVA-Sz-Gwf"/>
+                            <constraint firstAttribute="trailing" secondItem="RLo-Jn-MJv" secondAttribute="trailing" id="Ivh-H3-I3a"/>
                             <constraint firstItem="PUw-jz-45i" firstAttribute="top" secondItem="b4F-dg-O0a" secondAttribute="top" id="Oe4-RE-QTO"/>
                             <constraint firstAttribute="trailing" secondItem="PUw-jz-45i" secondAttribute="trailing" id="QJT-af-DKq"/>
+                            <constraint firstItem="RLo-Jn-MJv" firstAttribute="top" secondItem="b4F-dg-O0a" secondAttribute="bottom" id="WXG-cC-1GD"/>
                             <constraint firstItem="PUw-jz-45i" firstAttribute="trailing" secondItem="b4F-dg-O0a" secondAttribute="trailing" id="eYD-UH-n8E"/>
                             <constraint firstItem="PUw-jz-45i" firstAttribute="leading" secondItem="b4F-dg-O0a" secondAttribute="leading" id="sBY-Z5-lTK"/>
                             <constraint firstItem="PUw-jz-45i" firstAttribute="leading" secondItem="jzB-Bf-rHM" secondAttribute="leading" id="wjX-ZN-TWS"/>
@@ -90,6 +97,7 @@
                         <outlet property="indicator" destination="a37-6z-X8a" id="sIQ-Kp-ctA"/>
                         <outlet property="playerMaskView" destination="b4F-dg-O0a" id="oAr-O1-GdS"/>
                         <outlet property="playerView" destination="PUw-jz-45i" id="sxK-3m-w7M"/>
+                        <outlet property="scrollView" destination="RLo-Jn-MJv" id="Drg-J8-Dh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUf-pq-nHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
