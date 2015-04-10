@@ -22,6 +22,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         title = "YoutubePlayer"
+        navigationController?.hidesBarsOnSwipe = true
 
         applyTheme()
         
