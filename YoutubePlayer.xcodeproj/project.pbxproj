@@ -22,6 +22,7 @@
 		029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6321AD503BF00C17B9E /* VideoViewController.swift */; };
 		029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6341AD523A100C17B9E /* VideoViewModel.swift */; };
 		02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B3223E1AD6150500426F6B /* SwiftyJSON.swift */; };
+		02C1139B1AF1F494001BFC22 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1139A1AF1F494001BFC22 /* SearchResultsViewController.swift */; };
 		02C49EBC1AD5354F00051EDF /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 02C49EBB1AD5354F00051EDF /* Assets */; };
 		02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */; };
 		02E0E71F1AD369C100F6180D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0E71E1AD369C100F6180D /* FeedViewModel.swift */; };
@@ -63,6 +64,7 @@
 		029EB6321AD503BF00C17B9E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = Views/Controllers/VideoViewController.swift; sourceTree = "<group>"; };
 		029EB6341AD523A100C17B9E /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = ViewModels/VideoViewModel.swift; sourceTree = "<group>"; };
 		02B3223E1AD6150500426F6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		02C1139A1AF1F494001BFC22 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsViewController.swift; path = Views/Controllers/SearchResultsViewController.swift; sourceTree = "<group>"; };
 		02C49EBB1AD5354F00051EDF /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Pods/youtube-ios-player-helper/Assets"; sourceTree = "<group>"; };
 		02D8E1EA1AD293E40037A578 /* ModelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelSerializable.swift; path = Models/ModelSerializable.swift; sourceTree = "<group>"; };
 		02E0E71E1AD369C100F6180D /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewModel.swift; path = ViewModels/FeedViewModel.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				02E0E7261AD387A500F6180D /* FeedViewController.swift */,
 				029EB6321AD503BF00C17B9E /* VideoViewController.swift */,
+				02C1139A1AF1F494001BFC22 /* SearchResultsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				025AA5BC1AD25B5B0087F260 /* VideoItem.swift in Sources */,
+				02C1139B1AF1F494001BFC22 /* SearchResultsViewController.swift in Sources */,
 				023156C21AD2392D00EB1876 /* Router.swift in Sources */,
 				029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */,
 				02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */,
