@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		023156C01AD2383A00EB1876 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156BF1AD2383A00EB1876 /* APIClient.swift */; };
 		023156C21AD2392D00EB1876 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156C11AD2392D00EB1876 /* Router.swift */; };
+		0237348B1AF75B5D00861406 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237348A1AF75B5D00861406 /* SearchViewController.swift */; };
 		0245A00F1AD4CD0300842C2F /* GradientNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0245A00E1AD4CD0300842C2F /* GradientNode.swift */; };
 		024F62881AD4C19100B1C47F /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024F62871AD4C19100B1C47F /* NSDateExtensions.swift */; };
 		025AA5BC1AD25B5B0087F260 /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AA5BB1AD25B5B0087F260 /* VideoItem.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		023156BF1AD2383A00EB1876 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = Utilities/APIClient.swift; sourceTree = "<group>"; };
 		023156C11AD2392D00EB1876 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = Utilities/Router.swift; sourceTree = "<group>"; };
+		0237348A1AF75B5D00861406 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = Views/Controllers/SearchViewController.swift; sourceTree = "<group>"; };
 		0245A00E1AD4CD0300842C2F /* GradientNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientNode.swift; path = Views/Nodes/GradientNode.swift; sourceTree = "<group>"; };
 		024F62871AD4C19100B1C47F /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDateExtensions.swift; path = Utilities/NSDateExtensions.swift; sourceTree = "<group>"; };
 		025AA5BB1AD25B5B0087F260 /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoItem.swift; path = Models/VideoItem.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				02E0E7261AD387A500F6180D /* FeedViewController.swift */,
 				029EB6321AD503BF00C17B9E /* VideoViewController.swift */,
 				02C1139A1AF1F494001BFC22 /* SearchResultsViewController.swift */,
+				0237348A1AF75B5D00861406 /* SearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */,
 				029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
+				0237348B1AF75B5D00861406 /* SearchViewController.swift in Sources */,
 				02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */,
 				02E0E7271AD387A500F6180D /* FeedViewController.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
