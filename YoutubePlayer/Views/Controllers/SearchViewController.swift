@@ -65,6 +65,12 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let history = viewModel.histories[indexPath.row]
+        
+        searchController!.searchBar.text = history
+        searchController!.active = true
+        
+        searchResultsController?.search(query: history)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
