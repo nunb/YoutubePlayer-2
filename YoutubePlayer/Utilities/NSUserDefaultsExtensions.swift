@@ -11,4 +11,25 @@ import Foundation
 
 extension NSUserDefaults {
     
+    func searchHistories() -> [String] {
+        if let histories = arrayForKey("searchHistories") as? [String] {
+            return histories
+        }
+        
+        return [String]()
+    }
+    
+    func addSearchHistory(query: String?) {
+        if let query = query {
+            var histories = searchHistories()
+            histories.append(query)
+            
+            synchronize()
+        }
+    }
+    
+    func clearSearchHistories() {
+        removeObjectForKey("searchHistories")
+        synchronize()
+    }
 }
