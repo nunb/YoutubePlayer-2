@@ -7,42 +7,76 @@
 //
 
 import UIKit
+import AsyncDisplayKit
+import Bolts
+
 
 class SearchResultsViewController: UIViewController {
-    
-    private let kCellId = "Cell"
 
-    @IBOutlet weak var tableView: UITableView!
-    
-    var results = [String]()
+    private let tableView = ASTableView()
+    private let viewModel = SearchResultsViewModel()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kCellId)
+        tableView.asyncDataSource = self
+        tableView.asyncDelegate = self
+        
+        view.addSubview(tableView)
+        
+        // TODO: Pagination
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        tableView.frame = view.bounds
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - Public
+    
+    func search(#query: String?) {
+        viewModel.fetchSearchResults(query: query, refresh: true).continueWithBlock {
+            (task) -> AnyObject! in
+            
+            if task.error != nil {
+                println(task.error)
+            }
+            
+            self.tableView.reloadData()
+            
+            return nil
+        }
+    }
 }
 
-extension SearchResultsViewController: UITableViewDataSource {
+extension SearchResultsViewController: ASTableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellId, forIndexPath: indexPath) as! UITableViewCell
+    func tableView(tableView: ASTableView!, nodeForRowAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
+        let itemVM = viewModel.results[indexPath.row]
         
-        cell.textLabel?.text = results[indexPath.row]
-        
-        return cell
+        return FeedVideoNode(viewModel: itemVM)
     }
 }
 
-extension SearchResultsViewController: UITableViewDelegate {
+extension SearchResultsViewController: ASCommonTableViewDataSource {
+    
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.results.count
+    }
+}
+
+extension SearchResultsViewController: ASTableViewDelegate {
+}
+
+extension SearchResultsViewController: ASCommonTableViewDelegate {
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    }
 }

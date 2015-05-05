@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var searchController: UISearchController?
+    private var searchResultsController: SearchResultsViewController?
     
     // TODO: Search History
     var histories = [String]()
@@ -28,12 +29,13 @@ class SearchViewController: UIViewController {
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kCellId)
         
-        let searchResultsVC = storyboard?
+        searchResultsController = storyboard?
             .instantiateViewControllerWithIdentifier("SearchResultsViewController")
-            as! SearchResultsViewController
+            as? SearchResultsViewController
         
-        searchController = UISearchController(searchResultsController: searchResultsVC)
+        searchController = UISearchController(searchResultsController: searchResultsController)
         searchController!.hidesNavigationBarDuringPresentation = false
+        searchController!.searchBar.delegate = self
         
         navigationItem.titleView = searchController!.searchBar
         
@@ -60,5 +62,15 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
-extension SearchResultsViewController: UITableViewDelegate {
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchResultsController?.search(query: searchBar.text)
+    }
 }
