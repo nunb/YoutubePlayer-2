@@ -11,10 +11,15 @@ import AsyncDisplayKit
 import Bolts
 
 
+@objc protocol SearchResultsViewControllerDelegate {
+    optional func searchResultDidSelect(result: VideoItem)
+}
+
 class SearchResultsViewController: UIViewController {
 
     private let tableView = ASTableView()
     private let viewModel = SearchResultsViewModel()
+    var delegate: SearchResultsViewControllerDelegate?
     
     // MARK: - Lifecycle
     
@@ -78,5 +83,8 @@ extension SearchResultsViewController: ASTableViewDelegate {
 extension SearchResultsViewController: ASCommonTableViewDelegate {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        let itemVM = viewModel.results[indexPath.row]
+
+        delegate?.searchResultDidSelect!(itemVM.item)
     }
 }

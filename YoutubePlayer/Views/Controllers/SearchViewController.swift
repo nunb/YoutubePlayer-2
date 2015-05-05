@@ -32,6 +32,7 @@ class SearchViewController: UIViewController {
         searchResultsController = storyboard?
             .instantiateViewControllerWithIdentifier("SearchResultsViewController")
             as? SearchResultsViewController
+        searchResultsController?.delegate = self
         
         searchController = UISearchController(searchResultsController: searchResultsController)
         searchController!.hidesNavigationBarDuringPresentation = false
@@ -72,5 +73,20 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchResultsController?.search(query: searchBar.text)
+    }
+}
+
+extension SearchViewController: SearchResultsViewControllerDelegate {
+    
+    func searchResultDidSelect(result: VideoItem) {
+        let videoVM = VideoViewModel(videoItem: result)
+        
+        let videoVC = storyboard?
+            .instantiateViewControllerWithIdentifier("VideoViewController")
+            as! VideoViewController
+        
+        videoVC.viewModel = videoVM
+        
+        navigationController?.showViewController(videoVC, sender: self)
     }
 }
