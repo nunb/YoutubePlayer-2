@@ -20,6 +20,7 @@
 		029880D01AD21ED80015CEB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029880CF1AD21ED80015CEB7 /* Images.xcassets */; };
 		029880D31AD21ED80015CEB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029880D11AD21ED80015CEB7 /* LaunchScreen.xib */; };
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
+		029AA63A1AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029AA6391AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift */; };
 		029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6321AD503BF00C17B9E /* VideoViewController.swift */; };
 		029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6341AD523A100C17B9E /* VideoViewModel.swift */; };
 		02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B3223E1AD6150500426F6B /* SwiftyJSON.swift */; };
@@ -64,6 +65,7 @@
 		029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerTests.swift; sourceTree = "<group>"; };
 		029880E81AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		029AA6391AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSUserDefaultsExtensions.swift; path = Utilities/NSUserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		029EB6321AD503BF00C17B9E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = Views/Controllers/VideoViewController.swift; sourceTree = "<group>"; };
 		029EB6341AD523A100C17B9E /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = ViewModels/VideoViewModel.swift; sourceTree = "<group>"; };
 		02B3223E1AD6150500426F6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				023156BF1AD2383A00EB1876 /* APIClient.swift */,
 				023156C11AD2392D00EB1876 /* Router.swift */,
 				024F62871AD4C19100B1C47F /* NSDateExtensions.swift */,
+				029AA6391AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				023156C21AD2392D00EB1876 /* Router.swift in Sources */,
 				029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */,
 				02D8E1EB1AD293E40037A578 /* ModelSerializable.swift in Sources */,
+				029AA63A1AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift in Sources */,
 				0245A00F1AD4CD0300842C2F /* GradientNode.swift in Sources */,
 				02E0E7211AD3749C00F6180D /* FeedItemViewModel.swift in Sources */,
 				02BC07A71AF88C5000E171F5 /* SearchResultsViewModel.swift in Sources */,
