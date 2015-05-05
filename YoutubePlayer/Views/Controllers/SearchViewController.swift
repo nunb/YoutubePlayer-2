@@ -16,11 +16,9 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private let viewModel = SearchViewModel()
     private var searchController: UISearchController?
     private var searchResultsController: SearchResultsViewController?
-    
-    // TODO: Search History
-    var histories = [String]()
 
     // MARK: - Lifecycle
     
@@ -36,6 +34,7 @@ class SearchViewController: UIViewController {
         
         searchController = UISearchController(searchResultsController: searchResultsController)
         searchController!.hidesNavigationBarDuringPresentation = false
+        searchController!.delegate = self
         searchController!.searchBar.delegate = self
         
         navigationItem.titleView = searchController!.searchBar
@@ -51,13 +50,13 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return histories.count
+        return viewModel.histories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kCellId, forIndexPath: indexPath) as! UITableViewCell
         
-        cell.textLabel?.text = histories[indexPath.row]
+        cell.textLabel?.text = viewModel.histories[indexPath.row]
         
         return cell
     }
@@ -67,12 +66,19 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Search Histories"
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchResultsController?.search(query: searchBar.text)
+        let query = searchBar.text
+        
+        searchResultsController?.search(query: query)
+        viewModel.recordSearchHistory(query: query)
     }
 }
 
@@ -88,5 +94,13 @@ extension SearchViewController: SearchResultsViewControllerDelegate {
         videoVC.viewModel = videoVM
         
         navigationController?.showViewController(videoVC, sender: self)
+    }
+}
+
+extension SearchViewController: UISearchControllerDelegate {
+    
+    func willDismissSearchController(searchController: UISearchController) {
+        viewModel.refreshHistories()
+        tableView.reloadData()
     }
 }
