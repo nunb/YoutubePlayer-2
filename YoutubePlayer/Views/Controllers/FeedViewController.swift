@@ -123,6 +123,6 @@ extension FeedViewController: ASCommonTableViewDelegate {
         let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as! VideoViewController
         videoVC.viewModel = videoVM
         
-        navigationController?.pushViewController(videoVC, animated: true)
+        navigationController?.showViewController(videoVC, sender: self)
     }
 }
