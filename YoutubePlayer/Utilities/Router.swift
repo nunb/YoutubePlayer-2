@@ -34,6 +34,12 @@ enum Router: URLRequestConvertible {
                     parameters["pageToken"] = pageToken
                 }
                 
+                let locale = NSLocale.currentLocale()
+                
+                if let countryCode = locale.objectForKey(NSLocaleCountryCode) as? String {
+                    parameters["regionCode"] = countryCode
+                }
+                
                 return (.GET, "/videos", parameters)
             
             case .Search(let query, let pageToken):
