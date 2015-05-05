@@ -15,6 +15,10 @@ class SearchViewModel: NSObject {
     override init() {
         super.init()
         
+        refreshHistories()
+    }
+    
+    func refreshHistories() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         histories = userDefaults.searchHistories()
     }
