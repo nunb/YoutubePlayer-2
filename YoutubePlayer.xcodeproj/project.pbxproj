@@ -21,6 +21,7 @@
 		029880D31AD21ED80015CEB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 029880D11AD21ED80015CEB7 /* LaunchScreen.xib */; };
 		029880DF1AD21ED80015CEB7 /* YoutubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029880DE1AD21ED80015CEB7 /* YoutubePlayerTests.swift */; };
 		029AA63A1AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029AA6391AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift */; };
+		029AA63C1AF912E100ACB3C2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029AA63B1AF912E100ACB3C2 /* SearchViewModel.swift */; };
 		029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6321AD503BF00C17B9E /* VideoViewController.swift */; };
 		029EB6351AD523A100C17B9E /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029EB6341AD523A100C17B9E /* VideoViewModel.swift */; };
 		02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B3223E1AD6150500426F6B /* SwiftyJSON.swift */; };
@@ -66,6 +67,7 @@
 		029880E81AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		029880E91AD21F870015CEB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		029AA6391AF90C2100ACB3C2 /* NSUserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSUserDefaultsExtensions.swift; path = Utilities/NSUserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		029AA63B1AF912E100ACB3C2 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ViewModels/SearchViewModel.swift; sourceTree = "<group>"; };
 		029EB6321AD503BF00C17B9E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = Views/Controllers/VideoViewController.swift; sourceTree = "<group>"; };
 		029EB6341AD523A100C17B9E /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewModel.swift; path = ViewModels/VideoViewModel.swift; sourceTree = "<group>"; };
 		02B3223E1AD6150500426F6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Submodules/SwiftyJSON/Source/SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				02E0E7201AD3749C00F6180D /* FeedItemViewModel.swift */,
 				029EB6341AD523A100C17B9E /* VideoViewModel.swift */,
 				02BC07A61AF88C5000E171F5 /* SearchResultsViewModel.swift */,
+				029AA63B1AF912E100ACB3C2 /* SearchViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
 				0237348B1AF75B5D00861406 /* SearchViewController.swift in Sources */,
+				029AA63C1AF912E100ACB3C2 /* SearchViewModel.swift in Sources */,
 				02B3223F1AD6150500426F6B /* SwiftyJSON.swift in Sources */,
 				02E0E7271AD387A500F6180D /* FeedViewController.swift in Sources */,
 				023156C01AD2383A00EB1876 /* APIClient.swift in Sources */,
