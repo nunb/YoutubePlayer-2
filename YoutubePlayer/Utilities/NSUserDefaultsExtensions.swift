@@ -22,8 +22,14 @@ extension NSUserDefaults {
     func addSearchHistory(query: String?) {
         if let query = query {
             var histories = searchHistories()
-            histories.append(query)
             
+            if !contains(histories, query) {
+                histories.append(query)
+            } else {
+                // TODO: Re-sorting
+            }
+            
+            setObject(histories, forKey: "searchHistories")
             synchronize()
         }
     }
