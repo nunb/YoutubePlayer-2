@@ -74,7 +74,7 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Search Histories"
+        return NSLocalizedString("searchHistories", comment: "")
     }
 }
 
