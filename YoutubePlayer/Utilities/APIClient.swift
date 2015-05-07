@@ -23,8 +23,8 @@ extension APIClient {
         return fetchVideos(URLRequest: URLRequest)
     }
     
-    static func searchVideos(#channelId: String?, pageToken: String?) -> BFTask {
-        var URLRequest = Router.Search(channelId: channelId, pageToken: pageToken)
+    static func searchVideos(#query: String?, pageToken: String?) -> BFTask {
+        var URLRequest = Router.Search(query: query, pageToken: pageToken)
         
         return fetchVideos(URLRequest: URLRequest)
     }

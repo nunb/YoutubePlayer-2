@@ -14,7 +14,7 @@ enum Router: URLRequestConvertible {
     
     // github.com/Alamofire/Alamofire#api-parameter-abstraction
     case MostPopular(pageToken: String?)
-    case Search(channelId: String?, pageToken: String?)
+    case Search(query: String?, pageToken: String?)
     
     // MARK: URLRequestConvertible
     
@@ -34,9 +34,15 @@ enum Router: URLRequestConvertible {
                     parameters["pageToken"] = pageToken
                 }
                 
+                let locale = NSLocale.currentLocale()
+                
+                if let countryCode = locale.objectForKey(NSLocaleCountryCode) as? String {
+                    parameters["regionCode"] = countryCode
+                }
+                
                 return (.GET, "/videos", parameters)
             
-            case .Search(let channelId, let pageToken):
+            case .Search(let query, let pageToken):
                 var parameters: [String: AnyObject] = [
                     "key": Router.kGoogleAPIKey,
                     "part": "snippet",
@@ -44,8 +50,8 @@ enum Router: URLRequestConvertible {
                     "maxResults": 20,
                 ]
                 
-                if channelId != nil {
-                    parameters["channelId"] = channelId
+                if query != nil {
+                    parameters["q"] = query
                 }
                 
                 if pageToken != nil {

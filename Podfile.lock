@@ -35,7 +35,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AsyncDisplayKit:
-    :commit: 1316389f10d53e6d865f90d96998471216fab167
+    :commit: f248dbddd1eb3de559b2ec3b9397d2f218ffe6af
     :git: git@github.com:facebook/AsyncDisplayKit.git
   youtube-ios-player-helper:
     :commit: c4efd00e79a599c16fd9887a827aca22acef8920
@@ -51,4 +51,4 @@ SPEC CHECKSUMS:
   Snap: 7318f07bc3d43adb0706f36ede18fa18d2347037
   youtube-ios-player-helper: 9b1ff47d73626e83038be3a019ac714472e6e22c
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.1

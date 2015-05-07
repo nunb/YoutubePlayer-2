@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tyQ-Um-uRH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tyQ-Um-uRH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -21,6 +21,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAQ-by-FdB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-76" y="240"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="PN6-M9-JBO">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="Mq9-1Q-b9h" customClass="SearchViewController" customModule="YoutubePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wda-ta-Hcs"/>
+                        <viewControllerLayoutGuide type="bottom" id="g2t-Pk-V5W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Trj-qD-Rcg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-bA-SCw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mq9-1Q-b9h" id="XrK-nz-RIV"/>
+                                    <outlet property="delegate" destination="Mq9-1Q-b9h" id="2Dn-fg-9oh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qd7-bA-SCw" secondAttribute="trailing" id="1Cp-2b-fah"/>
+                            <constraint firstItem="Qd7-bA-SCw" firstAttribute="top" secondItem="Trj-qD-Rcg" secondAttribute="top" id="WVj-3W-JNp"/>
+                            <constraint firstItem="Qd7-bA-SCw" firstAttribute="leading" secondItem="Trj-qD-Rcg" secondAttribute="leading" id="ic4-kG-Ah1"/>
+                            <constraint firstItem="g2t-Pk-V5W" firstAttribute="top" secondItem="Qd7-bA-SCw" secondAttribute="bottom" id="ujW-mh-lP5"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="Qd7-bA-SCw" id="Rev-8X-UyG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gC5-3e-ozV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="387" y="-452"/>
+        </scene>
+        <!--Search Results View Controller-->
+        <scene sceneID="NH2-hc-vGJ">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultsViewController" id="aUf-d2-10h" customClass="SearchResultsViewController" customModule="YoutubePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gGT-e7-SBW"/>
+                        <viewControllerLayoutGuide type="bottom" id="yex-WI-Pk9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SPO-x7-7yh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bs2-RC-35r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="840" y="-452"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="tne-QT-ifu">

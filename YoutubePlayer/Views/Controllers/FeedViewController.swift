@@ -10,12 +10,11 @@ import UIKit
 import AsyncDisplayKit
 import Bolts
 
-
 class FeedViewController: UIViewController {
 
     private let tableView = ASTableView()
     private let viewModel = FeedViewModel()
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class FeedViewController: UIViewController {
         tableView.asyncDelegate = self
         
         view.addSubview(tableView)
-        
+
         viewModel.fetchMostPopularVideos(refresh: true).continueWithBlock {
             (task) -> AnyObject! in
             
@@ -42,6 +41,12 @@ class FeedViewController: UIViewController {
             
             return nil
         }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.Search,
+            target: self,
+            action: "searchButtonDidTouchUpInside:"
+        )
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,6 +61,16 @@ class FeedViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Action
+    
+    func searchButtonDidTouchUpInside(sender: UIBarButtonItem) {
+        let searchVC = storyboard?
+            .instantiateViewControllerWithIdentifier("SearchViewController")
+            as! SearchViewController
+        
+        navigationController?.showViewController(searchVC, sender: self)
     }
     
     // MARK: - Private
@@ -108,6 +123,6 @@ extension FeedViewController: ASCommonTableViewDelegate {
         let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as! VideoViewController
         videoVC.viewModel = videoVM
         
-        navigationController?.pushViewController(videoVC, animated: true)
+        navigationController?.showViewController(videoVC, sender: self)
     }
 }
