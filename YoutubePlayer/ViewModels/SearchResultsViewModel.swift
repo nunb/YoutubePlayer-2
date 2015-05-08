@@ -10,9 +10,13 @@ import UIKit
 import Bolts
 
 class SearchResultsViewModel: NSObject {
+    
+    let kMaxItemCount = 100
+    
     private(set) var results = [FeedItemViewModel]()
     private(set) var loading = false
     private(set) var pagingEnabled = true
+    private(set) var searchingQuery: String?
     private var nextPageToken: String?
    
     override init() {
@@ -25,8 +29,12 @@ class SearchResultsViewModel: NSObject {
         loading = true
         
         if refresh {
+            searchingQuery = nil
             nextPageToken = nil
         }
+        
+        // For pagination
+        searchingQuery = query
         
         fetchTask = fetchTask.continueWithBlock({ (task) -> AnyObject! in
             return APIClient.searchVideos(query: query, pageToken: self.nextPageToken)
@@ -34,9 +42,10 @@ class SearchResultsViewModel: NSObject {
         
         fetchTask = fetchTask.continueWithSuccessBlock({ (task) -> AnyObject! in
             if let dictionary = task.result as? [String: AnyObject] {
+                var items = [FeedItemViewModel]()
                 
                 if let videos = dictionary["videos"] as? [VideoItem] {
-                    let items = videos.map { (video: VideoItem) -> FeedItemViewModel in
+                    items = videos.map { (video: VideoItem) -> FeedItemViewModel in
                         return FeedItemViewModel(item: video)
                     }
                     
@@ -52,6 +61,8 @@ class SearchResultsViewModel: NSObject {
                 } else {
                     self.pagingEnabled = false
                 }
+                
+                return BFTask(result: items)
             }
             
             return task

@@ -30,8 +30,6 @@ class SearchResultsViewController: UIViewController {
         tableView.asyncDelegate = self
         
         view.addSubview(tableView)
-        
-        // TODO: Pagination
     }
     
     override func viewWillLayoutSubviews() {
@@ -48,13 +46,15 @@ class SearchResultsViewController: UIViewController {
     
     func search(#query: String?) {
         viewModel.fetchSearchResults(query: query, refresh: true).continueWithBlock {
-            (task) -> AnyObject! in
+            [weak self] (task: BFTask!) -> BFTask! in
             
-            if task.error != nil {
-                println(task.error)
+            if let wself = self {
+                if task.error != nil {
+                    println(task.error)
+                }
+                
+                wself.tableView.reloadData()
             }
-            
-            self.tableView.reloadData()
             
             return nil
         }
@@ -78,6 +78,48 @@ extension SearchResultsViewController: ASCommonTableViewDataSource {
 }
 
 extension SearchResultsViewController: ASTableViewDelegate {
+    
+    func tableView(tableView: ASTableView!, willBeginBatchFetchWithContext context: ASBatchContext!) {
+        
+        if !viewModel.loading &&
+            viewModel.pagingEnabled && viewModel.results.count > 0 {
+                
+            viewModel
+                .fetchSearchResults(query: viewModel.searchingQuery, refresh: false)
+                .continueWithBlock { [weak self] (task: BFTask!) -> BFTask! in
+                    
+                    if let wself = self {
+                        
+                        if task.error != nil {
+                            println(task.error)
+                            
+                        } else if let newItems = task.result as? [FeedItemViewModel] {
+                            let updatedItemCount = wself.viewModel.results.count
+                            let firstIndex = updatedItemCount - newItems.count
+                            
+                            var indexPaths = [NSIndexPath]()
+                            
+                            for index in firstIndex..<updatedItemCount {
+                                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                                indexPaths.append(indexPath)
+                            }
+                            
+                            wself.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+                        }
+                        
+                        context.completeBatchFetching(true)
+                    }
+                    
+                    return nil
+                }
+        }
+    }
+    
+    func shouldBatchFetchForTableView(tableView: ASTableView!) -> Bool {
+        // TODO: No network connection
+        
+        return viewModel.results.count < viewModel.kMaxItemCount
+    }
 }
 
 extension SearchResultsViewController: ASCommonTableViewDelegate {
