@@ -17,7 +17,7 @@ import Bolts
 
 class SearchResultsViewController: UIViewController {
 
-    private let tableView = ASTableView()
+    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
     private let viewModel = SearchResultsViewModel()
     var delegate: SearchResultsViewControllerDelegate?
     
