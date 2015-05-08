@@ -32,8 +32,7 @@ class FeedViewController: UIViewController {
 
         viewModel
             .fetchMostPopularVideos(refresh: true)
-            .continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: {
-                [weak self] (task: BFTask!) -> BFTask! in
+            .continueWithBlock({ [weak self] (task: BFTask!) -> BFTask! in
             
                 if let wself = self {
                 
@@ -148,8 +147,7 @@ extension FeedViewController: ASTableViewDelegate {
                 
             viewModel
                 .fetchMostPopularVideos(refresh: false)
-                .continueWithExecutor(BFExecutor.defaultExecutor(), withBlock: {
-                    [weak self] (task: BFTask!) -> BFTask! in
+                .continueWithBlock({ [weak self] (task: BFTask!) -> BFTask! in
 
                     if let wself = self {
                             
