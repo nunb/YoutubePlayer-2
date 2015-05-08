@@ -97,29 +97,6 @@ class FeedViewController: UIViewController {
             ]
         }
     }
-
-    private func loadMore() {
-        if !viewModel.loading &&
-            viewModel.pagingEnabled && viewModel.items.count > 0 {
-            
-            viewModel
-                .fetchMostPopularVideos(refresh: false)
-                .continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: {
-                    [weak self] (task: BFTask!) -> BFTask! in
-                    
-                    if let wself = self {
-                        
-                        if task.error != nil {
-                            println(task.error)
-                        }
-                        
-                        wself.tableView.reloadData()
-                    }
-                    
-                    return nil
-                })
-        }
-    }
 }
 
 extension FeedViewController: ASTableViewDataSource {
