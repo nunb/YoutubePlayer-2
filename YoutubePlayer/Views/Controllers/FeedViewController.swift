@@ -12,7 +12,8 @@ import Bolts
 
 class FeedViewController: UIViewController {
 
-    private let tableView = ASTableView()
+    // FIXME: RLMObject can't be shared between multiple threads
+    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: false)
     private let viewModel = FeedViewModel()
 
     // MARK: - Lifecycle
@@ -21,7 +22,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         title = "YoutubePlayer"
-        navigationController?.hidesBarsOnSwipe = true
+        //navigationController?.hidesBarsOnSwipe = true
 
         applyTheme()
         
@@ -30,17 +31,22 @@ class FeedViewController: UIViewController {
         
         view.addSubview(tableView)
 
-        viewModel.fetchMostPopularVideos(refresh: true).continueWithBlock {
-            (task) -> AnyObject! in
+        viewModel
+            .fetchMostPopularVideos(refresh: true)
+            .continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: {
+                [weak self] (task: BFTask!) -> BFTask! in
             
-            if task.error != nil {
-                println(task.error)
-            }
+                if let wself = self {
+                
+                    if task.error != nil {
+                        println(task.error)
+                    }
+                
+                    wself.tableView.reloadData()
+                }
             
-            self.tableView.reloadData()
-            
-            return nil
-        }
+                return nil
+            })
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.Search,
@@ -93,6 +99,29 @@ class FeedViewController: UIViewController {
             ]
         }
     }
+
+    private func loadMore() {
+        if !viewModel.loading &&
+            viewModel.pagingEnabled && viewModel.items.count > 0 {
+            
+            viewModel
+                .fetchMostPopularVideos(refresh: false)
+                .continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: {
+                    [weak self] (task: BFTask!) -> BFTask! in
+                    
+                    if let wself = self {
+                        
+                        if task.error != nil {
+                            println(task.error)
+                        }
+                        
+                        wself.tableView.reloadData()
+                    }
+                    
+                    return nil
+                })
+        }
+    }
 }
 
 extension FeedViewController: ASTableViewDataSource {
@@ -112,6 +141,49 @@ extension FeedViewController: ASCommonTableViewDataSource {
 }
 
 extension FeedViewController: ASTableViewDelegate {
+    
+    func tableView(tableView: ASTableView!, willBeginBatchFetchWithContext context: ASBatchContext!) {
+
+        if !viewModel.loading &&
+            viewModel.pagingEnabled && viewModel.items.count > 0 {
+                
+            viewModel
+                .fetchMostPopularVideos(refresh: false)
+                .continueWithExecutor(BFExecutor.defaultExecutor(), withBlock: {
+                    [weak self] (task: BFTask!) -> BFTask! in
+
+                    if let wself = self {
+                            
+                        if task.error != nil {
+                            println(task.error)
+                        
+                        } else if let newItems = task.result as? [FeedItemViewModel] {
+                            let updatedItemCount = wself.viewModel.items.count
+                            let firstIndex = updatedItemCount - newItems.count
+                            
+                            var indexPaths = [NSIndexPath]()
+                            
+                            for index in firstIndex..<updatedItemCount {
+                                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                                indexPaths.append(indexPath)
+                            }
+                            
+                            wself.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+                        }
+                        
+                        context.completeBatchFetching(true)
+                    }
+                        
+                    return nil
+                })
+        }
+    }
+    
+    func shouldBatchFetchForTableView(tableView: ASTableView!) -> Bool {
+        // TODO: No network connection
+        
+        return viewModel.items.count < viewModel.kMaxItemCount
+    }
 }
 
 extension FeedViewController: ASCommonTableViewDelegate {

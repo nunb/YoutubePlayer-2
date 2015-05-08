@@ -11,6 +11,9 @@ import Bolts
 
 
 class FeedViewModel: NSObject {
+    
+    let kMaxItemCount = 100
+    
     private(set) var items = [FeedItemViewModel]()
     private(set) var loading = false
     private(set) var pagingEnabled = true
@@ -34,9 +37,10 @@ class FeedViewModel: NSObject {
         
         fetchTask = fetchTask.continueWithSuccessBlock({ (task) -> AnyObject! in
             if let dictionary = task.result as? [String: AnyObject] {
+                var items = [FeedItemViewModel]()
                 
                 if let videos = dictionary["videos"] as? [VideoItem] {
-                    let items = videos.map { (video: VideoItem) -> FeedItemViewModel in
+                    items = videos.map { (video: VideoItem) -> FeedItemViewModel in
                         return FeedItemViewModel(item: video)
                     }
                     
@@ -51,7 +55,9 @@ class FeedViewModel: NSObject {
                     self.nextPageToken = nextPageToken
                 } else {
                     self.pagingEnabled = false
-                }                
+                }
+
+                return BFTask(result: items)
             }
             
             return task
