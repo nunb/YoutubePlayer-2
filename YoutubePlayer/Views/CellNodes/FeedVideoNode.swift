@@ -31,8 +31,8 @@ class FeedVideoNode: ASCellNode {
         imageNode = ASNetworkImageNode()
         imageNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor()
         
-        if let thumbnail = viewModel.thumbnail {
-            imageNode.URL = NSURL(string: thumbnail.url)
+        if let thumbnailUrl = viewModel.thumbnailUrl {
+            imageNode.URL = NSURL(string: thumbnailUrl)
         }
         
         gradientNode = GradientNode()

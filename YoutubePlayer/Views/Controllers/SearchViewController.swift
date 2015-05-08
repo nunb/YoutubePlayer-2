@@ -90,8 +90,8 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchResultsViewControllerDelegate {
     
-    func searchResultDidSelect(result: VideoItem) {
-        let videoVM = VideoViewModel(videoItem: result)
+    func searchResultDidSelect(result: FeedItemViewModel) {
+        let videoVM = VideoViewModel(itemViewModel: result)
         
         let videoVC = storyboard?
             .instantiateViewControllerWithIdentifier("VideoViewController")

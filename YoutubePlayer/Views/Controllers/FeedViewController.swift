@@ -12,8 +12,7 @@ import Bolts
 
 class FeedViewController: UIViewController {
 
-    // FIXME: RLMObject can't be shared between multiple threads
-    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: false)
+    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
     private let viewModel = FeedViewModel()
 
     // MARK: - Lifecycle
@@ -22,7 +21,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         title = "YoutubePlayer"
-        //navigationController?.hidesBarsOnSwipe = true
+        navigationController?.hidesBarsOnSwipe = true
 
         applyTheme()
         
@@ -190,7 +189,7 @@ extension FeedViewController: ASCommonTableViewDelegate {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let itemVM = viewModel.items[indexPath.row]
-        let videoVM = VideoViewModel(videoItem: itemVM.item)
+        let videoVM = VideoViewModel(itemViewModel: itemVM)
         
         let videoVC = storyboard?.instantiateViewControllerWithIdentifier("VideoViewController") as! VideoViewController
         videoVC.viewModel = videoVM

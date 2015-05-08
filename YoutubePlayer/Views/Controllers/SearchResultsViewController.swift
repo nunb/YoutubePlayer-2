@@ -12,7 +12,7 @@ import Bolts
 
 
 @objc protocol SearchResultsViewControllerDelegate {
-    optional func searchResultDidSelect(result: VideoItem)
+    optional func searchResultDidSelect(result: FeedItemViewModel)
 }
 
 class SearchResultsViewController: UIViewController {
@@ -85,6 +85,6 @@ extension SearchResultsViewController: ASCommonTableViewDelegate {
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let itemVM = viewModel.results[indexPath.row]
 
-        delegate?.searchResultDidSelect!(itemVM.item)
+        delegate?.searchResultDidSelect!(itemVM)
     }
 }
