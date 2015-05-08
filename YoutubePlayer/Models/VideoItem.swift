@@ -95,7 +95,7 @@ class VideoItem: RLMObject {
             
             for item in items {
                 let videoItem = VideoItem.modelFromJSON(item)
-                let model = VideoItem.createOrUpdateInRealm(realm, withObject: videoItem)
+                let model = VideoItem.createOrUpdateInRealm(realm, withValue: videoItem)
                 collection.append(model)
             }
             

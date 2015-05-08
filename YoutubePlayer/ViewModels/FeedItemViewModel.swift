@@ -11,14 +11,19 @@ import Foundation
 
 class FeedItemViewModel: NSObject {
     
-    private(set) var item: VideoItem
+    private(set) var itemId: String
     private(set) var title: String?
     private(set) var itemDescription: String?
     private(set) var publishedAt: NSDate?
-    private(set) var thumbnail: Thumbnail?
+    private(set) var thumbnailUrl: String?
     
     init(item: VideoItem) {
-        self.item = item
+        //
+        // Sharing Realm instances across threads is not supported.
+        //
+        // Reference: realm.io/docs/swift/latest/#using-a-realm-across-threads
+        //
+        itemId = item.itemId
         title = item.title
         itemDescription = item.itemDescription
         publishedAt = item.publishedAt
@@ -31,7 +36,8 @@ class FeedItemViewModel: NSObject {
             
             if results.count > 0 {
                 let thumbnail = results.lastObject() as! Thumbnail
-                self.thumbnail = thumbnail
+                thumbnailUrl = thumbnail.url
+                
                 break
             }
         }

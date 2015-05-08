@@ -14,11 +14,11 @@ class VideoViewModel: NSObject {
     private(set) var title          : String?
     private(set) var itemDescription: String?
     
-    init(videoItem: VideoItem) {
+    init(itemViewModel: FeedItemViewModel) {
         super.init()
         
-        videoId = videoItem.itemId
-        title   = videoItem.title
-        itemDescription = videoItem.itemDescription
+        videoId = itemViewModel.itemId
+        title   = itemViewModel.title
+        itemDescription = itemViewModel.itemDescription
     }
 }
