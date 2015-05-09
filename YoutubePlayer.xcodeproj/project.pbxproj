@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02219C411AFE6DA700D42486 /* FeedFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02219C401AFE6DA700D42486 /* FeedFooterView.swift */; };
+		02219C431AFE710C00D42486 /* FeedFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02219C421AFE710C00D42486 /* FeedFooterView.xib */; };
 		023156C01AD2383A00EB1876 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156BF1AD2383A00EB1876 /* APIClient.swift */; };
 		023156C21AD2392D00EB1876 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023156C11AD2392D00EB1876 /* Router.swift */; };
 		0237348B1AF75B5D00861406 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237348A1AF75B5D00861406 /* SearchViewController.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02219C401AFE6DA700D42486 /* FeedFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedFooterView.swift; path = Views/Views/FeedFooterView.swift; sourceTree = "<group>"; };
+		02219C421AFE710C00D42486 /* FeedFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedFooterView.xib; path = Views/Views/FeedFooterView.xib; sourceTree = "<group>"; };
 		023156BF1AD2383A00EB1876 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = Utilities/APIClient.swift; sourceTree = "<group>"; };
 		023156C11AD2392D00EB1876 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = Utilities/Router.swift; sourceTree = "<group>"; };
 		0237348A1AF75B5D00861406 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = Views/Controllers/SearchViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 		02E0E7241AD386DF00F6180D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				02219C401AFE6DA700D42486 /* FeedFooterView.swift */,
+				02219C421AFE710C00D42486 /* FeedFooterView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				024F2FD21AF9D52800356C74 /* Localizable.strings in Resources */,
 				029880CE1AD21ED80015CEB7 /* Main.storyboard in Resources */,
 				029880D31AD21ED80015CEB7 /* LaunchScreen.xib in Resources */,
+				02219C431AFE710C00D42486 /* FeedFooterView.xib in Resources */,
 				029880D01AD21ED80015CEB7 /* Images.xcassets in Resources */,
 				02C49EBC1AD5354F00051EDF /* Assets in Resources */,
 			);
@@ -450,6 +457,7 @@
 				025AA5BE1AD261510087F260 /* Thumbnail.swift in Sources */,
 				029880CB1AD21ED80015CEB7 /* ViewController.swift in Sources */,
 				029EB6331AD503BF00C17B9E /* VideoViewController.swift in Sources */,
+				02219C411AFE6DA700D42486 /* FeedFooterView.swift in Sources */,
 				029880C91AD21ED80015CEB7 /* AppDelegate.swift in Sources */,
 				0237348B1AF75B5D00861406 /* SearchViewController.swift in Sources */,
 				029AA63C1AF912E100ACB3C2 /* SearchViewModel.swift in Sources */,
