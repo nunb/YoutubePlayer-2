@@ -12,8 +12,9 @@ import Bolts
 
 class FeedViewController: UIViewController {
 
-    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
     private let viewModel = FeedViewModel()
+    private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Lifecycle
     
@@ -30,21 +31,8 @@ class FeedViewController: UIViewController {
         
         view.addSubview(tableView)
 
-        viewModel
-            .fetchMostPopularVideos(refresh: true)
-            .continueWithBlock({ [weak self] (task: BFTask!) -> BFTask! in
-            
-                if let wself = self {
-                
-                    if task.error != nil {
-                        println(task.error)
-                    }
-                
-                    wself.tableView.reloadData()
-                }
-            
-                return nil
-            })
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.Search,
@@ -61,6 +49,10 @@ class FeedViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if viewModel.items.count == 0 {
+            refresh()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,6 +67,29 @@ class FeedViewController: UIViewController {
             as! SearchViewController
         
         navigationController?.showViewController(searchVC, sender: self)
+    }
+    
+    func refresh() {
+        if viewModel.loading {
+            return
+        }
+        
+        viewModel
+            .fetchMostPopularVideos(refresh: true)
+            .continueWithBlock({ [weak self] (task: BFTask!) -> BFTask! in
+                
+                if let wself = self {
+                    wself.refreshControl.endRefreshing()
+                    
+                    if task.error != nil {
+                        println(task.error)
+                    }
+                    
+                    wself.tableView.reloadData()
+                }
+                
+                return nil
+            })
     }
     
     // MARK: - Private
