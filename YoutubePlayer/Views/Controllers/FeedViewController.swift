@@ -10,11 +10,14 @@ import UIKit
 import AsyncDisplayKit
 import Bolts
 
+private var myContext = 0
+
 class FeedViewController: UIViewController {
 
     private let viewModel = FeedViewModel()
     private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
     private let refreshControl = UIRefreshControl()
+    private var footerView: FeedFooterView!
 
     // MARK: - Lifecycle
     
@@ -34,11 +37,31 @@ class FeedViewController: UIViewController {
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         
+        footerView = {
+            let nib = UINib(nibName: "FeedFooterView", bundle: nil)
+            let view = nib.instantiateWithOwner(nil, options: nil).last as! FeedFooterView
+            view.delegate = self
+            view.state = .Neutral
+            
+            return view
+        }()
+        
+        tableView.tableFooterView = footerView
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.Search,
             target: self,
             action: "searchButtonDidTouchUpInside:"
         )
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.addObserver(self,
+            forKeyPath: "pagingEnabled", options: .New, context: &myContext)
+        viewModel.addObserver(self,
+            forKeyPath: "loading", options: .New, context: &myContext)
     }
     
     override func viewWillLayoutSubviews() {
@@ -47,16 +70,62 @@ class FeedViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Manually fix footerView frame for iPhone6+,
+        footerView.frame = CGRect(
+            x: footerView.frame.origin.x,
+            y: footerView.frame.origin.y,
+            width: tableView.frame.width,
+            height: 50.0
+        )
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         if viewModel.items.count == 0 {
+            footerView.state = .Loading
             refresh()
+        } else if (!viewModel.pagingEnabled) {
+            footerView.state = .BottomOfPage
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.removeObserver(self, forKeyPath: "pagingEnabled", context: &myContext)
+        viewModel.removeObserver(self, forKeyPath: "loading", context: &myContext)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Key-Value Observing
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if context == &myContext {
+            
+            if keyPath == "pagingEnabled" && !viewModel.pagingEnabled {
+                footerView.state = .BottomOfPage
+            }
+            
+            if keyPath == "loading" {
+                
+                if viewModel.loading {
+                    footerView.state = .Loading
+                } else if footerView.state != .BottomOfPage {
+                    footerView.state = .Neutral
+                }
+            }
+            
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
     // MARK: - Action
@@ -165,12 +234,15 @@ extension FeedViewController: ASTableViewDelegate {
                         
                     return nil
                 })
+        
+        } else {
+            context.completeBatchFetching(true)
         }
     }
     
     func shouldBatchFetchForTableView(tableView: ASTableView!) -> Bool {
         // TODO: No network connection
-        
+
         return viewModel.items.count < viewModel.kMaxItemCount
     }
 }
@@ -185,5 +257,13 @@ extension FeedViewController: ASCommonTableViewDelegate {
         videoVC.viewModel = videoVM
         
         navigationController?.showViewController(videoVC, sender: self)
+    }
+}
+
+// MARK: - FeedFooterViewDelegate
+
+extension FeedViewController: FeedFooterViewDelegate {
+    
+    func footerView(footerView: FeedFooterView, didTouchUpInsideButton button: UIButton) {
     }
 }
