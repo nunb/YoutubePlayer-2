@@ -7,3 +7,8 @@
 */
 
 "searchHistories" = "Search Histories";
+
+// Feed footer
+"footerTitleNeutral"      = "Load more";
+"footerTitleBottomOfPage" = "End";
+"footerTitleError"        = "Tap to reload";
