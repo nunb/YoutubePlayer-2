@@ -18,6 +18,7 @@ import Bolts
 class SearchResultsViewController: UIViewController {
 
     private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
+    private let refreshControl = UIRefreshControl()
     private let viewModel = SearchResultsViewModel()
     var delegate: SearchResultsViewControllerDelegate?
     
@@ -30,6 +31,9 @@ class SearchResultsViewController: UIViewController {
         tableView.asyncDelegate = self
         
         view.addSubview(tableView)
+        
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     override func viewWillLayoutSubviews() {
@@ -40,6 +44,31 @@ class SearchResultsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Action
+    
+    func refresh() {
+        if viewModel.loading {
+            return
+        }
+        
+        viewModel
+            .fetchSearchResults(query: viewModel.searchingQuery, refresh: true)
+            .continueWithBlock { [weak self] (task: BFTask!) -> BFTask! in
+            
+                if let wself = self {
+                    wself.refreshControl.endRefreshing()
+                    
+                    if task.error != nil {
+                        println(task.error)
+                    }
+                
+                    wself.tableView.reloadData()
+                }
+            
+                return nil
+            }
     }
     
     // MARK: - Public
