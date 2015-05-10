@@ -13,9 +13,9 @@ class SearchResultsViewModel: NSObject {
     
     let kMaxItemCount = 100
     
-    private(set) var results = [FeedItemViewModel]()
-    private(set) var loading = false
-    private(set) var pagingEnabled = true
+    dynamic private(set) var results = [FeedItemViewModel]()
+    dynamic private(set) var loading = false
+    dynamic private(set) var pagingEnabled = true
     private(set) var searchingQuery: String?
     private var nextPageToken: String?
    
@@ -58,6 +58,7 @@ class SearchResultsViewModel: NSObject {
                 
                 if let nextPageToken = dictionary["nextPageToken"] as? String {
                     self.nextPageToken = nextPageToken
+                    self.pagingEnabled = true
                 } else {
                     self.pagingEnabled = false
                 }

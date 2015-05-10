@@ -10,16 +10,18 @@ import UIKit
 import AsyncDisplayKit
 import Bolts
 
-
 @objc protocol SearchResultsViewControllerDelegate {
     optional func searchResultDidSelect(result: FeedItemViewModel)
 }
+
+private var myContext = 0
 
 class SearchResultsViewController: UIViewController {
 
     private let tableView = ASTableView(frame: .zeroRect, style: .Plain, asyncDataFetching: true)
     private let refreshControl = UIRefreshControl()
     private let viewModel = SearchResultsViewModel()
+    private var footerView: FeedFooterView!
     var delegate: SearchResultsViewControllerDelegate?
     
     // MARK: - Lifecycle
@@ -34,6 +36,26 @@ class SearchResultsViewController: UIViewController {
         
         refreshControl.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
+        
+        footerView = {
+            let nib = UINib(nibName: "FeedFooterView", bundle: nil)
+            let view = nib.instantiateWithOwner(nil, options: nil).last as! FeedFooterView
+            view.delegate = self
+            view.state = .Neutral
+            
+            return view
+        }()
+        
+        tableView.tableFooterView = footerView
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.addObserver(self,
+            forKeyPath: "pagingEnabled", options: .New, context: &myContext)
+        viewModel.addObserver(self,
+            forKeyPath: "loading", options: .New, context: &myContext)
     }
     
     override func viewWillLayoutSubviews() {
@@ -41,9 +63,60 @@ class SearchResultsViewController: UIViewController {
         
         tableView.frame = view.bounds
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Manually fix footerView frame for iPhone6+,
+        footerView.frame = CGRect(
+            x: footerView.frame.origin.x,
+            y: footerView.frame.origin.y,
+            width: tableView.frame.width,
+            height: 50.0
+        )
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if (!viewModel.pagingEnabled) {
+            footerView.state = .BottomOfPage
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.removeObserver(self, forKeyPath: "pagingEnabled", context: &myContext)
+        viewModel.removeObserver(self, forKeyPath: "loading", context: &myContext)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Key-Value Observing
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if context == &myContext {
+            
+            if keyPath == "pagingEnabled" && !viewModel.pagingEnabled {
+                footerView.state = .BottomOfPage
+            }
+            
+            if keyPath == "loading" {
+                
+                if viewModel.loading {
+                    footerView.state = .Loading
+                } else if footerView.state != .BottomOfPage {
+                    footerView.state = .Neutral
+                }
+            }
+            
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
     // MARK: - Action
@@ -74,6 +147,9 @@ class SearchResultsViewController: UIViewController {
     // MARK: - Public
     
     func search(#query: String?) {
+        // FIXME: Change manually
+        footerView.state = .Loading
+        
         viewModel.fetchSearchResults(query: query, refresh: true).continueWithBlock {
             [weak self] (task: BFTask!) -> BFTask! in
             
@@ -82,6 +158,7 @@ class SearchResultsViewController: UIViewController {
                     println(task.error)
                 }
                 
+                wself.footerView.state = .Neutral
                 wself.tableView.reloadData()
             }
             
@@ -141,6 +218,8 @@ extension SearchResultsViewController: ASTableViewDelegate {
                     
                     return nil
                 }
+        } else {
+            context.completeBatchFetching(true)
         }
     }
     
@@ -157,5 +236,13 @@ extension SearchResultsViewController: ASCommonTableViewDelegate {
         let itemVM = viewModel.results[indexPath.row]
 
         delegate?.searchResultDidSelect!(itemVM)
+    }
+}
+
+// MARK: - FeedFooterViewDelegate
+
+extension SearchResultsViewController: FeedFooterViewDelegate {
+    
+    func footerView(footerView: FeedFooterView, didTouchUpInsideButton button: UIButton) {
     }
 }
