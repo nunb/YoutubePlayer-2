@@ -14,9 +14,9 @@ class FeedViewModel: NSObject {
     
     let kMaxItemCount = 100
     
-    private(set) var items = [FeedItemViewModel]()
-    private(set) var loading = false
-    private(set) var pagingEnabled = true
+    dynamic private(set) var items = [FeedItemViewModel]()
+    dynamic private(set) var loading = false
+    dynamic private(set) var pagingEnabled = true
     private var nextPageToken: String?
     
     override init() {
@@ -53,6 +53,7 @@ class FeedViewModel: NSObject {
                 
                 if let nextPageToken = dictionary["nextPageToken"] as? String {
                     self.nextPageToken = nextPageToken
+                    self.pagingEnabled = true
                 } else {
                     self.pagingEnabled = false
                 }

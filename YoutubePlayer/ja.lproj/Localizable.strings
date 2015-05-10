@@ -7,3 +7,8 @@
 */
 
 "searchHistories" = "検索履歴";
+
+// Feed footer
+"footerTitleNeutral"      = "さらに読み込む";
+"footerTitleBottomOfPage" = "ここまでです";
+"footerTitleError"        = "タップして再度読み込む";
