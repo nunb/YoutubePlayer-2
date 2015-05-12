@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 class FeedItemViewModel: NSObject {
     
@@ -16,6 +16,8 @@ class FeedItemViewModel: NSObject {
     private(set) var itemDescription: String?
     private(set) var publishedAt: NSDate?
     private(set) var thumbnailUrl: String?
+    
+    var bookmarked = false
     
     init(item: VideoItem) {
         //
@@ -28,12 +30,23 @@ class FeedItemViewModel: NSObject {
         itemDescription = item.itemDescription
         publishedAt = item.publishedAt
         
+        let realm = Realm()
+        
+        if let user = realm.objectForPrimaryKey(User.self, key: "1") {
+            let predicate = NSPredicate(format: "itemId = %@", itemId)
+            let results = user.bookmarks.filter(predicate)
+
+            if results.count > 0 {
+                bookmarked = true
+            }
+        }
+        
         let resolutions = ["maxres", "standard", "high", "medium", "default"]
         
         for resolution in resolutions {
             let predicate = NSPredicate(format: "resolution = %@", resolution)
             let results = item.thumbnails.filter(predicate)
-            
+
             if results.count > 0 {
                 
                 if let thumbnail = results.last {
