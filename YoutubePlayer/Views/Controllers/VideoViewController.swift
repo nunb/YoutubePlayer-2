@@ -10,6 +10,8 @@ import UIKit
 import youtube_ios_player_helper
 import Snap
 
+private var myContext = 0
+
 class VideoViewController: UIViewController {
     
     @IBOutlet weak var playerView: YTPlayerView!
@@ -20,6 +22,7 @@ class VideoViewController: UIViewController {
     var viewModel: VideoViewModel?
     
     private let containerView = UIView()
+    private var bookmarkButton = UIButton.buttonWithType(.Custom) as! UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +30,28 @@ class VideoViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         playerView.delegate = self
         
+        let bookmarkIcon = UIImage(named: "BookmarkIcon")!
+        let selectedBookmarkIcon = UIImage(named: "BookmarkIcon_Selected")!
+        
+        bookmarkButton.setBackgroundImage(bookmarkIcon, forState: .Normal)
+        bookmarkButton.setBackgroundImage(selectedBookmarkIcon, forState: .Selected)
+        bookmarkButton.addTarget(self, action: "bookmarkButtonDidTouchUpInside:", forControlEvents: .TouchUpInside)
+        bookmarkButton.frame = CGRect(
+            x: 0, y: 0,
+            width: bookmarkIcon.size.width,
+            height: bookmarkIcon.size.height
+        )
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: bookmarkButton)
+
         if let viewModel = viewModel {
             
             if let videoId = viewModel.videoId {
                 playerView.loadWithVideoId(videoId, playerVars: ["showinfo": 0])
                 indicator.startAnimating()
             }
+            
+            bookmarkButton.selected = viewModel.bookmarked
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "playerMaskDidTap:")
@@ -52,14 +71,49 @@ class VideoViewController: UIViewController {
         setupContainerView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let viewModel = viewModel {
+            viewModel.addObserver(self, forKeyPath: "bookmarked", options: .New, context: &myContext)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let viewModel = viewModel {
+            viewModel.removeObserver(self, forKeyPath: "bookmarked", context: &myContext)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Key-Value Observing
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if context == &myContext && keyPath == "bookmarked" {
+            
+            if let viewModel = viewModel {
+                bookmarkButton.selected = viewModel.bookmarked
+            }
+            
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
     // MARK: - Action
     
     func playerMaskDidTap(sender: AnyObject) {
         playerView.playVideo()
+    }
+    
+    func bookmarkButtonDidTouchUpInside(sender: UIBarButtonItem) {
+        viewModel?.bookmark()
     }
     
     // MARK: - Private
