@@ -17,7 +17,7 @@ class VideoItem: Object {
     
     // MARK: - Relation
     
-    dynamic var thumbnails = List<Thumbnail>()
+    dynamic let thumbnails = List<Thumbnail>()
 
     // MARK: - Initialization
     
