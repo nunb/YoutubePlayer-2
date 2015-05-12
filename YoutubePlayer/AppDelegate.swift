@@ -18,11 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Setup user
-        let user = User()
         let realm = Realm()
         
-        realm.write {
-            realm.add(user, update: true)
+        if realm.objectForPrimaryKey(User.self, key: "1") == nil {
+            let newUser = User()
+            
+            // 'bookmarks' relation will be broken when new user is created
+            realm.write {
+                realm.add(newUser, update: true)
+            }
         }
         
         return true
