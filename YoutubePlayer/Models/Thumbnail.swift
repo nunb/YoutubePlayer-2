@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
-class Thumbnail: RLMObject {
+class Thumbnail: Object {
     dynamic var resolution = "default"  // default, medium, high, standard, maxres
     dynamic var url        = ""
     dynamic var width      = 0

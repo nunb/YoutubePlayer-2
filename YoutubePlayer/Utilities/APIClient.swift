@@ -8,8 +8,6 @@
 
 import Alamofire
 import Bolts
-import Realm
-
 
 struct APIClient {}
 

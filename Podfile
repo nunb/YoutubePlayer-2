@@ -6,7 +6,7 @@ use_frameworks!
 pod 'Alamofire'         , '1.2.1'
 pod 'Bolts'             , '1.1.5'
 pod 'ChameleonFramework', '1.2.0'
-pod 'Realm'             , '0.92.2'
+pod 'RealmSwift'        , '0.92.2'
 pod 'Snap'              , '0.9.2'
 pod 'pop'               , '1.0.7'
 

@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
-class VideoItem: RLMObject {
+class VideoItem: Object {
     dynamic var itemId          = ""
     dynamic var title           = ""
     dynamic var itemDescription = ""
@@ -17,7 +17,7 @@ class VideoItem: RLMObject {
     
     // MARK: - Relation
     
-    dynamic var thumbnails = RLMArray(objectClassName: Thumbnail.className())
+    dynamic var thumbnails = List<Thumbnail>()
 
     // MARK: - Initialization
     
@@ -58,7 +58,7 @@ class VideoItem: RLMObject {
 
             for (key: String, subJson: JSON) in thumbnails {
                 let thumbnail = Thumbnail.modelFromJSON(subJson, resolution: key)
-                model.thumbnails.addObject(thumbnail)
+                model.thumbnails.append(thumbnail)
             }
         }
         
@@ -67,7 +67,7 @@ class VideoItem: RLMObject {
     
     // MARK: - Override
     
-    override class func primaryKey() -> String! {
+    override static func primaryKey() -> String? {
         return "itemId"
     }
     
@@ -87,19 +87,19 @@ class VideoItem: RLMObject {
     // MARK: - ResponseCollectionSerializable
     
     class func collection(#json: JSON) -> [VideoItem] {
-        let realm = RLMRealm.defaultRealm()
+        let realm = Realm()
         var collection = [VideoItem]()
         
         if let items = json["items"].array {
-            realm.beginWriteTransaction()
+            realm.beginWrite()
             
             for item in items {
                 let videoItem = VideoItem.modelFromJSON(item)
-                let model = VideoItem.createOrUpdateInRealm(realm, withValue: videoItem)
-                collection.append(model)
+                realm.add(videoItem, update: true)
+                collection.append(videoItem)
             }
             
-            realm.commitWriteTransaction()
+            realm.commitWrite()
         }
         
         return collection

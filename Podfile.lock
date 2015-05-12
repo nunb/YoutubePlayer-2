@@ -14,6 +14,8 @@ PODS:
   - Realm (0.92.2):
     - Realm/Headers (= 0.92.2)
   - Realm/Headers (0.92.2)
+  - RealmSwift (0.92.2):
+    - Realm (= 0.92.2)
   - Snap (0.9.2)
   - youtube-ios-player-helper (0.1.2)
 
@@ -23,7 +25,7 @@ DEPENDENCIES:
   - Bolts (= 1.1.5)
   - ChameleonFramework (= 1.2.0)
   - pop (= 1.0.7)
-  - Realm (= 0.92.2)
+  - RealmSwift (= 0.92.2)
   - Snap (= 0.9.2)
   - youtube-ios-player-helper (from `git@github.com:youtube/youtube-ios-player-helper.git`)
 
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   ChameleonFramework: 4d6bf87fcaee176f487176cdccc4229637ec97f0
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   Realm: fa8e8f7f788dd63744485c15b453487bc7546c8e
+  RealmSwift: 4d9054904335ce8c824c19a4793883c275017e57
   Snap: 7318f07bc3d43adb0706f36ede18fa18d2347037
   youtube-ios-player-helper: 9b1ff47d73626e83038be3a019ac714472e6e22c
 

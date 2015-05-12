@@ -32,11 +32,13 @@ class FeedItemViewModel: NSObject {
         
         for resolution in resolutions {
             let predicate = NSPredicate(format: "resolution = %@", resolution)
-            let results = item.thumbnails.objectsWithPredicate(predicate)
+            let results = item.thumbnails.filter(predicate)
             
             if results.count > 0 {
-                let thumbnail = results.lastObject() as! Thumbnail
-                thumbnailUrl = thumbnail.url
+                
+                if let thumbnail = results.last {
+                    thumbnailUrl = thumbnail.url
+                }
                 
                 break
             }
