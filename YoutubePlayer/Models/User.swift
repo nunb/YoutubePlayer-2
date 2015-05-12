@@ -14,7 +14,7 @@ class User: Object {
     
     // MARK: - Relation
     
-    dynamic var bookmarks = List<VideoItem>()
+    dynamic let bookmarks = List<VideoItem>()
     
     // MARK: - Override
     
